@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log/
+> Task6.log
+  log type:  text
+ opened on:  29 Sep 2021, 18:39:55
+
+. 
+. * clean
+. import delimited "${path}/Build/Raw/growthdata92_02.csv", clear
+(30 vars, 112 obs)
+
+. 
+. 
+. save "${path}/Build/Output/92_02_cleaned.dta", replace
+(note: file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build
+> /Output/92_02_cleaned.dta not found)
+file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build/Output
+> /92_02_cleaned.dta saved
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log/
+> Task6.log
+  log type:  text
+ closed on:  29 Sep 2021, 18:39:56
+--------------------------------------------------------------------------------------------
