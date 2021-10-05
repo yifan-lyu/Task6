@@ -8,6 +8,7 @@
 
 clear all
 set more off
+global path "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6"
 use "${path}/Build/Output/92_02_cleaned.dta", replace
 
 ******************* PREPARATION ************************************************
@@ -52,12 +53,12 @@ end
 
 ********************************************************************************
 * subset selection
-qui vselect ln_y *_norm if insample == 1, forward r2adj // stata does not have cross validation within sample
+vselect ln_y *_norm if insample == 1, forward r2adj // stata does not have cross validation within sample
 predict yhat_select if insample == 2
 local df = `e(df_r)'
 findmse yhat_select ln_y `df'
 
-
+/*
 * principal component regression
 qui pca ln_y *norm
 local X "pc1 pc2 pc3 pc4 pc5 pc6"
@@ -96,4 +97,6 @@ qui reg ln_y *norm if insample == 1
 local df = `e(df_r)'
 predict yhat_kitchen if insample == 2
 findmse yhat_kitchen ln_y `df'
+
+
 

@@ -1,9 +1,9 @@
---------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log/
-> Task6.log
+       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log
+> /Task6.log
   log type:  text
- opened on:  29 Sep 2021, 20:04:04
+ opened on:   5 Oct 2021, 17:01:11
 
 . 
 . * clean
@@ -20,9 +20,9 @@
  10. }
 - foreach name in "92_02" "02_11" {
 - import delimited "${path}/Build/Raw/growthdata`name'.csv", clear
-= import delimited "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Tas
-> k6/Build/Raw/growthdata92_02.csv", clear
-  ------------------------------------------------------------------------- begin import ---
+= import delimited "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Ta
+> sk6/Build/Raw/growthdata92_02.csv", clear
+  ------------------------------------------------------------------------ begin import ---
   - version 12
   - local version : di "version " string(_caller()) ":"
   - gettoken subcmd 0 : 0, parse(" ,")
@@ -49,40 +49,40 @@
   - else if `"`subcmd'"' == "delimited" {
   = else if `"delimited"' == "delimited" {
   - `version' ImpDelim `macval(0)'
-  = version 16.1: ImpDelim  "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifa
-> n_Lyu/Task6/Build/Raw/growthdata92_02.csv", clear
-    -------------------------------------------------------------- begin import.ImpDelim ---
+  = version 16.1: ImpDelim  "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yif
+> an_Lyu/Task6/Build/Raw/growthdata92_02.csv", clear
+    ------------------------------------------------------------- begin import.ImpDelim ---
     - version 13
     - local version : di "version " string(_caller()) ":"
     - `version' import_delimited `macval(0)'
-    = version 16.1: import_delimited "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empir
-> ical/Yifan_Lyu/Task6/Build/Raw/growthdata92_02.csv", clear
-      ----------------------------------------------------------- begin import_delimited ---
+    = version 16.1: import_delimited "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empi
+> rical/Yifan_Lyu/Task6/Build/Raw/growthdata92_02.csv", clear
+      ---------------------------------------------------------- begin import_delimited ---
       - local ver : display "version " string(_caller()) ", missing:"
       - version 14
       - gettoken filename rest : 0, parse(" ,")
       - gettoken comma : rest, parse(" ,")
       - if (`"`filename'"' != "" & (trim(`"`comma'"') == "," | trim(`"`comma'"') == "")) {
-      = if (`"/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Bui
-> ld/Raw/growthdata92_02.csv"' != "" & (trim(`","') == "," | trim(`","') == "")) {
+      = if (`"/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Bu
+> ild/Raw/growthdata92_02.csv"' != "" & (trim(`","') == "," | trim(`","') == "")) {
       - local 0 `"using `0'"'
-      = local 0 `"using "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Ly
-> u/Task6/Build/Raw/growthdata92_02.csv", clear"'
+      = local 0 `"using "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_L
+> yu/Task6/Build/Raw/growthdata92_02.csv", clear"'
       - }
-      - capture syntax using/ [, DELIMiters(string asis) ROWRange(string) COLRange(string) V
-> ARNames(string) case(string) ASDOUBle ASFLOat FAVORSTRFixed clear BINDQuotes(string) STRIP
-> Quotes(string) NUMERICCols(string) STRINGCols(string) CHARSET(string) ENCoding(string) PAR
-> SELocale(string) GROUPSeparator(string) DECIMALSeparator(string) MAXQUOTEDRows(string) COL
-> LAPSEDelimiters]
+      - capture syntax using/ [, DELIMiters(string asis) ROWRange(string) COLRange(string) 
+> VARNames(string) case(string) ASDOUBle ASFLOat FAVORSTRFixed clear BINDQuotes(string) STR
+> IPQuotes(string) NUMERICCols(string) STRINGCols(string) CHARSET(string) ENCoding(string) 
+> PARSELocale(string) GROUPSeparator(string) DECIMALSeparator(string) MAXQUOTEDRows(string)
+>  COLLAPSEDelimiters]
       - if _rc {
-        syntax [anything(name=vlist id="vlist")] using/ [, DELIMiters(string asis) ROWRange(
-> string) COLRange(string) VARNames(string) case(string) ASDOUBle ASFLOat FAVORSTRFixed clea
-> r BINDQuotes(string) STRIPQuotes(string) NUMERICCols(string) STRINGCols(string) CHARSET(st
-> ring) ENCoding(string) PARSELocale(string) GROUPSeparator(string) DECIMALSeparator(string)
->  MAXQUOTEDRows(string) COLLAPSEDelimiters]
+        syntax [anything(name=vlist id="vlist")] using/ [, DELIMiters(string asis) ROWRange
+> (string) COLRange(string) VARNames(string) case(string) ASDOUBle ASFLOat FAVORSTRFixed cl
+> ear BINDQuotes(string) STRIPQuotes(string) NUMERICCols(string) STRINGCols(string) CHARSET
+> (string) ENCoding(string) PARSELocale(string) GROUPSeparator(string) DECIMALSeparator(str
+> ing) MAXQUOTEDRows(string) COLLAPSEDelimiters]
         }
       - mata:import_delim_import_file()
-        -------------------------------------------------------------------- begin clear ---
+        ------------------------------------------------------------------- begin clear ---
         - if _caller() < 10 {
           _clear_9 `0'
           exit
@@ -100,7 +100,7 @@
         = if ""=="" {
         - drop _all
         - label drop _all
-          ------------------------------------------------------------------ begin label ---
+          ----------------------------------------------------------------- begin label ---
           - version 10.0
           - local vv : display "version " string(_caller()) ", missing:"
           - gettoken val : 0
@@ -128,7 +128,7 @@
           - `vv' _label `macval(0)'
           = version 10, missing: _label drop _all
           - }
-          -------------------------------------------------------------------- end label ---
+          ------------------------------------------------------------------- end label ---
         - }
         - else if "`1'"=="frames" {
         = else if ""=="frames" {
@@ -195,8 +195,8 @@
           display as err "`1' not allowed"
           exit 198
           }
-        ---------------------------------------------------------------------- end clear ---
-        -------------------------------------------------------------------- begin clear ---
+        --------------------------------------------------------------------- end clear ---
+        ------------------------------------------------------------------- begin clear ---
         - if _caller() < 10 {
           _clear_9 `0'
           exit
@@ -214,7 +214,7 @@
         = if ""=="" {
         - drop _all
         - label drop _all
-          ------------------------------------------------------------------ begin label ---
+          ----------------------------------------------------------------- begin label ---
           - version 10.0
           - local vv : display "version " string(_caller()) ", missing:"
           - gettoken val : 0
@@ -242,7 +242,7 @@
           - `vv' _label `macval(0)'
           = version 10, missing: _label drop _all
           - }
-          -------------------------------------------------------------------- end label ---
+          ------------------------------------------------------------------- end label ---
         - }
         - else if "`1'"=="frames" {
         = else if ""=="frames" {
@@ -309,11 +309,11 @@
           display as err "`1' not allowed"
           exit 198
           }
-        ---------------------------------------------------------------------- end clear ---
+        --------------------------------------------------------------------- end clear ---
 (30 vars, 112 obs)
       - return add
-      ------------------------------------------------------------- end import_delimited ---
-    ---------------------------------------------------------------- end import.ImpDelim ---
+      ------------------------------------------------------------ end import_delimited ---
+    --------------------------------------------------------------- end import.ImpDelim ---
   - }
   - else if `"`subcmd'"' == "exc" {
   = else if `"delimited"' == "exc" {
@@ -378,9 +378,9 @@
     display as error `"import: unknown subcommand "`subcmd'""'
     exit 198
     }
-  --------------------------------------------------------------------------- end import ---
+  -------------------------------------------------------------------------- end import ---
 - qui ds v1 iso3, not
-  ----------------------------------------------------------------------------- begin ds ---
+  ---------------------------------------------------------------------------- begin ds ---
   - version 9
   - local version : di "version " string(_caller()) ":"
   - if (_caller() <= 4) {
@@ -390,10 +390,10 @@
   - else {
   - ds_util `0'
   = ds_util v1 iso3, not
-    ---------------------------------------------------------------------- begin ds_util ---
+    --------------------------------------------------------------------- begin ds_util ---
     - version 8
-    - syntax [varlist] [, HAS(str asis) NOT(str asis) NOT2 INSEnsitive Detail Alpha Varwidth
-> (int 12) Skip(int 2) INDENT(int 0)]
+    - syntax [varlist] [, HAS(str asis) NOT(str asis) NOT2 INSEnsitive Detail Alpha Varwidt
+> h(int 12) Skip(int 2) INDENT(int 0)]
     - if "`varlist'" == "" {
     = if "v1 iso3" == "" {
       exit
@@ -471,7 +471,7 @@
     - if `"`not2'"' != "" {
     = if `"not2"' != "" {
     - unab all : *
-      ----------------------------------------------------------------------- begin unab ---
+      ---------------------------------------------------------------------- begin unab ---
       - version 6
       - gettoken user 0: 0, parse(" :")
       - gettoken colon 0: 0, parse(" :")
@@ -479,25 +479,25 @@
       = if `":"' != ":" { error 198 }
       - syntax [varlist(default=empty)] [, MIN(integer 1) MAX(integer 120000) NAME(string)]
       - c_local `user' `varlist'
-      = c_local all v1 iso3 ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_e
-> mp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg 
-> competitiveness_exec parliamentary presidential voice stability effectiveness regulation l
-> aw corruption
+      = c_local all v1 iso3 ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_
+> emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_le
+> g competitiveness_exec parliamentary presidential voice stability effectiveness regulatio
+> n law corruption
       - local n : word count `varlist'
-      = local n : word count v1 iso3 ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_
-> emp tot_emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitive
-> ness_leg competitiveness_exec parliamentary presidential voice stability effectiveness reg
-> ulation law corruption
+      = local n : word count v1 iso3 ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem
+> _emp tot_emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competiti
+> veness_leg competitiveness_exec parliamentary presidential voice stability effectiveness 
+> regulation law corruption
       - if `n'>=`min' & `n'<=`max' { exit }
       = if 30>=1 & 30<=120000 { exit }
-      ------------------------------------------------------------------------- end unab ---
+      ------------------------------------------------------------------------ end unab ---
     - local varlist : list all - varlist
     - }
     - if "`varlist'" == "" {
-    = if "ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_mort lexp t
-> fr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg competitiveness_ex
-> ec parliamentary presidential voice stability effectiveness regulation law corruption" == 
-> "" {
+    = if "ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_mort lexp 
+> tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg competitiveness_
+> exec parliamentary presidential voice stability effectiveness regulation law corruption" 
+> == "" {
       exit
       }
     - if "`alpha'" != "" {
@@ -510,12 +510,12 @@
       }
     - else {
     - local nvar : word count `varlist'
-    = local nvar : word count ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_le
-> g competitiveness_exec parliamentary presidential voice stability effectiveness regulation
->  law corruption
+    = local nvar : word count ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_
+> leg competitiveness_exec parliamentary presidential voice stability effectiveness regulat
+> ion law corruption
     - local ncol = int((`:set linesize' + `skip') / (`varwidth' + `skip'))
-    = local ncol = int((92 + 2) / (12 + 2))
+    = local ncol = int((91 + 2) / (12 + 2))
     - local i 0
     - local vlist
     - foreach v of local varlist {
@@ -550,90 +550,92 @@
     = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c"
+> '
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability effectiven~s"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability effectiven~s"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability effectiven~s regulation"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability effectiven~s regulation"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability effectiven~s regulation law"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability effectiven~s regulation law"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability effectiven~s regulation law corruption"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability effectiven~s regulation law corruption"'
     - }
     - DisplayInCols txt `indent' `skip' 0 `vlist'
-    = DisplayInCols txt 0 2 0  ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
-      ------------------------------------------------------ begin ds_util.DisplayInCols ---
+    = DisplayInCols txt 0 2 0  ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
+      ----------------------------------------------------- begin ds_util.DisplayInCols ---
       - gettoken sty 0 : 0
       - gettoken indent 0 : 0
       - gettoken pad 0 : 0
@@ -737,7 +739,7 @@
       - local wid = `wid' + `pad'
       = local wid = 12 + 2
       - local cols = int((`c(linesize)'+1-`indent')/`wid')
-      = local cols = int((92+1-0)/14)
+      = local cols = int((91+1-0)/14)
       - if `cols' < 2 {
       = if 6 < 2 {
         if `indent' {
@@ -751,8 +753,8 @@
       - local lines = `n'/`cols'
       = local lines = 28/6
       - local lines = int(cond(`lines'>int(`lines'), `lines'+1, `lines'))
-      = local lines = int(cond(4.666666666666667>int(4.666666666666667), 4.666666666666667+1
-> , 4.666666666666667))
+      = local lines = int(cond(4.666666666666667>int(4.666666666666667), 4.666666666666667+
+> 1, 4.666666666666667))
       - forvalues i=1(1)`lines' {
       = forvalues i=1(1)5 {
       - local top = min((`cols')*`lines'+`i', `n')
@@ -762,54 +764,58 @@
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=1(5)28 {
       - local x : word `j' of `0'
-      = local x : word 1 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 1 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "ln_y" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 6 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 6 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "ext_bal" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 11 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 11 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "inf_mort" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 16 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 16 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "urban" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 21 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 21 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "parliament~y" _c
       - local col = `col' + `wid'
       = local col = 57 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 26 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 26 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(71) "regulation" _c
       - local col = `col' + `wid'
@@ -825,54 +831,58 @@
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=2(5)28 {
       - local x : word `j' of `0'
-      = local x : word 2 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 2 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "growth" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 7 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 7 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "trade" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 12 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 12 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "lexp" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 17 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 17 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "yrsoffc" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 22 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 22 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "presidential" _c
       - local col = `col' + `wid'
       = local col = 57 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 27 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 27 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(71) "law" _c
       - local col = `col' + `wid'
@@ -888,54 +898,58 @@
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=3(5)28 {
       - local x : word `j' of `0'
-      = local x : word 3 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 3 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "hc" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 8 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 8 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "inflation" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 13 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 13 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "tfr" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 18 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 18 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "military" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 23 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 23 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "voice" _c
       - local col = `col' + `wid'
       = local col = 57 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 28 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 28 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(71) "corruption" _c
       - local col = `col' + `wid'
@@ -951,45 +965,48 @@
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=4(5)28 {
       - local x : word `j' of `0'
-      = local x : word 4 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 4 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "gvmnt_c" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 9 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 9 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "fem_emp" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 14 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 14 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "age_dep_old" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 19 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 19 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "competitiv~g" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 24 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 24 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "stability" _c
       - local col = `col' + `wid'
@@ -1005,45 +1022,49 @@
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=5(5)28 {
       - local x : word `j' of `0'
-      = local x : word 5 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 5 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "gcf" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 10 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 10 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "tot_emp" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 15 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 15 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "age_dep_yo~g" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 20 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 20 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "competitiv~c" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 25 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 25 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "effectiven~s" _c
       - local col = `col' + `wid'
@@ -1052,21 +1073,21 @@
       - di as `sty'
       = di as txt
       - }
-      -------------------------------------------------------- end ds_util.DisplayInCols ---
+      ------------------------------------------------------- end ds_util.DisplayInCols ---
     - }
     - return local varlist `varlist'
-    = return local varlist ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_em
-> p inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg c
-> ompetitiveness_exec parliamentary presidential voice stability effectiveness regulation la
-> w corruption
-    ------------------------------------------------------------------------ end ds_util ---
+    = return local varlist ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_e
+> mp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg
+>  competitiveness_exec parliamentary presidential voice stability effectiveness regulation
+>  law corruption
+    ----------------------------------------------------------------------- end ds_util ---
   - exit
-  ------------------------------------------------------------------------------- end ds ---
+  ------------------------------------------------------------------------------ end ds ---
 - foreach var of varlist `r(varlist)' {
-= foreach var of varlist ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp 
-> inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg com
-> petitiveness_exec parliamentary presidential voice stability effectiveness regulation law 
-> corruption {
+= foreach var of varlist ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp
+>  inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg c
+> ompetitiveness_exec parliamentary presidential voice stability effectiveness regulation l
+> aw corruption {
 - qui su `var'
 = qui su ln_y
 - gen `var'_norm = (`var' - r(mean) )/(r(sd))
@@ -1209,15 +1230,15 @@
 - }
 - drop ln_y_norm
 - save "${path}/Build/Output/`name'_cleaned.dta", replace
-= save "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build/Out
-> put/92_02_cleaned.dta", replace
-file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build/Output
-> /92_02_cleaned.dta saved
+= save "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build/Ou
+> tput/92_02_cleaned.dta", replace
+file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build/Outpu
+> t/92_02_cleaned.dta saved
 - }
 - import delimited "${path}/Build/Raw/growthdata`name'.csv", clear
-= import delimited "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Tas
-> k6/Build/Raw/growthdata02_11.csv", clear
-  ------------------------------------------------------------------------- begin import ---
+= import delimited "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Ta
+> sk6/Build/Raw/growthdata02_11.csv", clear
+  ------------------------------------------------------------------------ begin import ---
   - version 12
   - local version : di "version " string(_caller()) ":"
   - gettoken subcmd 0 : 0, parse(" ,")
@@ -1244,40 +1265,40 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
   - else if `"`subcmd'"' == "delimited" {
   = else if `"delimited"' == "delimited" {
   - `version' ImpDelim `macval(0)'
-  = version 16.1: ImpDelim  "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifa
-> n_Lyu/Task6/Build/Raw/growthdata02_11.csv", clear
-    -------------------------------------------------------------- begin import.ImpDelim ---
+  = version 16.1: ImpDelim  "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yif
+> an_Lyu/Task6/Build/Raw/growthdata02_11.csv", clear
+    ------------------------------------------------------------- begin import.ImpDelim ---
     - version 13
     - local version : di "version " string(_caller()) ":"
     - `version' import_delimited `macval(0)'
-    = version 16.1: import_delimited "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empir
-> ical/Yifan_Lyu/Task6/Build/Raw/growthdata02_11.csv", clear
-      ----------------------------------------------------------- begin import_delimited ---
+    = version 16.1: import_delimited "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empi
+> rical/Yifan_Lyu/Task6/Build/Raw/growthdata02_11.csv", clear
+      ---------------------------------------------------------- begin import_delimited ---
       - local ver : display "version " string(_caller()) ", missing:"
       - version 14
       - gettoken filename rest : 0, parse(" ,")
       - gettoken comma : rest, parse(" ,")
       - if (`"`filename'"' != "" & (trim(`"`comma'"') == "," | trim(`"`comma'"') == "")) {
-      = if (`"/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Bui
-> ld/Raw/growthdata02_11.csv"' != "" & (trim(`","') == "," | trim(`","') == "")) {
+      = if (`"/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Bu
+> ild/Raw/growthdata02_11.csv"' != "" & (trim(`","') == "," | trim(`","') == "")) {
       - local 0 `"using `0'"'
-      = local 0 `"using "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Ly
-> u/Task6/Build/Raw/growthdata02_11.csv", clear"'
+      = local 0 `"using "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_L
+> yu/Task6/Build/Raw/growthdata02_11.csv", clear"'
       - }
-      - capture syntax using/ [, DELIMiters(string asis) ROWRange(string) COLRange(string) V
-> ARNames(string) case(string) ASDOUBle ASFLOat FAVORSTRFixed clear BINDQuotes(string) STRIP
-> Quotes(string) NUMERICCols(string) STRINGCols(string) CHARSET(string) ENCoding(string) PAR
-> SELocale(string) GROUPSeparator(string) DECIMALSeparator(string) MAXQUOTEDRows(string) COL
-> LAPSEDelimiters]
+      - capture syntax using/ [, DELIMiters(string asis) ROWRange(string) COLRange(string) 
+> VARNames(string) case(string) ASDOUBle ASFLOat FAVORSTRFixed clear BINDQuotes(string) STR
+> IPQuotes(string) NUMERICCols(string) STRINGCols(string) CHARSET(string) ENCoding(string) 
+> PARSELocale(string) GROUPSeparator(string) DECIMALSeparator(string) MAXQUOTEDRows(string)
+>  COLLAPSEDelimiters]
       - if _rc {
-        syntax [anything(name=vlist id="vlist")] using/ [, DELIMiters(string asis) ROWRange(
-> string) COLRange(string) VARNames(string) case(string) ASDOUBle ASFLOat FAVORSTRFixed clea
-> r BINDQuotes(string) STRIPQuotes(string) NUMERICCols(string) STRINGCols(string) CHARSET(st
-> ring) ENCoding(string) PARSELocale(string) GROUPSeparator(string) DECIMALSeparator(string)
->  MAXQUOTEDRows(string) COLLAPSEDelimiters]
+        syntax [anything(name=vlist id="vlist")] using/ [, DELIMiters(string asis) ROWRange
+> (string) COLRange(string) VARNames(string) case(string) ASDOUBle ASFLOat FAVORSTRFixed cl
+> ear BINDQuotes(string) STRIPQuotes(string) NUMERICCols(string) STRINGCols(string) CHARSET
+> (string) ENCoding(string) PARSELocale(string) GROUPSeparator(string) DECIMALSeparator(str
+> ing) MAXQUOTEDRows(string) COLLAPSEDelimiters]
         }
       - mata:import_delim_import_file()
-        -------------------------------------------------------------------- begin clear ---
+        ------------------------------------------------------------------- begin clear ---
         - if _caller() < 10 {
           _clear_9 `0'
           exit
@@ -1295,7 +1316,7 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
         = if ""=="" {
         - drop _all
         - label drop _all
-          ------------------------------------------------------------------ begin label ---
+          ----------------------------------------------------------------- begin label ---
           - version 10.0
           - local vv : display "version " string(_caller()) ", missing:"
           - gettoken val : 0
@@ -1323,7 +1344,7 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
           - `vv' _label `macval(0)'
           = version 10, missing: _label drop _all
           - }
-          -------------------------------------------------------------------- end label ---
+          ------------------------------------------------------------------- end label ---
         - }
         - else if "`1'"=="frames" {
         = else if ""=="frames" {
@@ -1390,8 +1411,8 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
           display as err "`1' not allowed"
           exit 198
           }
-        ---------------------------------------------------------------------- end clear ---
-        -------------------------------------------------------------------- begin clear ---
+        --------------------------------------------------------------------- end clear ---
+        ------------------------------------------------------------------- begin clear ---
         - if _caller() < 10 {
           _clear_9 `0'
           exit
@@ -1409,7 +1430,7 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
         = if ""=="" {
         - drop _all
         - label drop _all
-          ------------------------------------------------------------------ begin label ---
+          ----------------------------------------------------------------- begin label ---
           - version 10.0
           - local vv : display "version " string(_caller()) ", missing:"
           - gettoken val : 0
@@ -1437,7 +1458,7 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
           - `vv' _label `macval(0)'
           = version 10, missing: _label drop _all
           - }
-          -------------------------------------------------------------------- end label ---
+          ------------------------------------------------------------------- end label ---
         - }
         - else if "`1'"=="frames" {
         = else if ""=="frames" {
@@ -1504,11 +1525,11 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
           display as err "`1' not allowed"
           exit 198
           }
-        ---------------------------------------------------------------------- end clear ---
+        --------------------------------------------------------------------- end clear ---
 (30 vars, 112 obs)
       - return add
-      ------------------------------------------------------------- end import_delimited ---
-    ---------------------------------------------------------------- end import.ImpDelim ---
+      ------------------------------------------------------------ end import_delimited ---
+    --------------------------------------------------------------- end import.ImpDelim ---
   - }
   - else if `"`subcmd'"' == "exc" {
   = else if `"delimited"' == "exc" {
@@ -1573,9 +1594,9 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
     display as error `"import: unknown subcommand "`subcmd'""'
     exit 198
     }
-  --------------------------------------------------------------------------- end import ---
+  -------------------------------------------------------------------------- end import ---
 - qui ds v1 iso3, not
-  ----------------------------------------------------------------------------- begin ds ---
+  ---------------------------------------------------------------------------- begin ds ---
   - version 9
   - local version : di "version " string(_caller()) ":"
   - if (_caller() <= 4) {
@@ -1585,10 +1606,10 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
   - else {
   - ds_util `0'
   = ds_util v1 iso3, not
-    ---------------------------------------------------------------------- begin ds_util ---
+    --------------------------------------------------------------------- begin ds_util ---
     - version 8
-    - syntax [varlist] [, HAS(str asis) NOT(str asis) NOT2 INSEnsitive Detail Alpha Varwidth
-> (int 12) Skip(int 2) INDENT(int 0)]
+    - syntax [varlist] [, HAS(str asis) NOT(str asis) NOT2 INSEnsitive Detail Alpha Varwidt
+> h(int 12) Skip(int 2) INDENT(int 0)]
     - if "`varlist'" == "" {
     = if "v1 iso3" == "" {
       exit
@@ -1666,7 +1687,7 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
     - if `"`not2'"' != "" {
     = if `"not2"' != "" {
     - unab all : *
-      ----------------------------------------------------------------------- begin unab ---
+      ---------------------------------------------------------------------- begin unab ---
       - version 6
       - gettoken user 0: 0, parse(" :")
       - gettoken colon 0: 0, parse(" :")
@@ -1674,25 +1695,25 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       = if `":"' != ":" { error 198 }
       - syntax [varlist(default=empty)] [, MIN(integer 1) MAX(integer 120000) NAME(string)]
       - c_local `user' `varlist'
-      = c_local all v1 iso3 ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_e
-> mp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg 
-> competitiveness_exec parliamentary presidential voice stability effectiveness regulation l
-> aw corruption
+      = c_local all v1 iso3 ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_
+> emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_le
+> g competitiveness_exec parliamentary presidential voice stability effectiveness regulatio
+> n law corruption
       - local n : word count `varlist'
-      = local n : word count v1 iso3 ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_
-> emp tot_emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitive
-> ness_leg competitiveness_exec parliamentary presidential voice stability effectiveness reg
-> ulation law corruption
+      = local n : word count v1 iso3 ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem
+> _emp tot_emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competiti
+> veness_leg competitiveness_exec parliamentary presidential voice stability effectiveness 
+> regulation law corruption
       - if `n'>=`min' & `n'<=`max' { exit }
       = if 30>=1 & 30<=120000 { exit }
-      ------------------------------------------------------------------------- end unab ---
+      ------------------------------------------------------------------------ end unab ---
     - local varlist : list all - varlist
     - }
     - if "`varlist'" == "" {
-    = if "ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_mort lexp t
-> fr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg competitiveness_ex
-> ec parliamentary presidential voice stability effectiveness regulation law corruption" == 
-> "" {
+    = if "ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_mort lexp 
+> tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg competitiveness_
+> exec parliamentary presidential voice stability effectiveness regulation law corruption" 
+> == "" {
       exit
       }
     - if "`alpha'" != "" {
@@ -1705,12 +1726,12 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       }
     - else {
     - local nvar : word count `varlist'
-    = local nvar : word count ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_le
-> g competitiveness_exec parliamentary presidential voice stability effectiveness regulation
->  law corruption
+    = local nvar : word count ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_
+> leg competitiveness_exec parliamentary presidential voice stability effectiveness regulat
+> ion law corruption
     - local ncol = int((`:set linesize' + `skip') / (`varwidth' + `skip'))
-    = local ncol = int((92 + 2) / (12 + 2))
+    = local ncol = int((91 + 2) / (12 + 2))
     - local i 0
     - local vlist
     - foreach v of local varlist {
@@ -1745,90 +1766,92 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
     = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c"
+> '
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability effectiven~s"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability effectiven~s"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability effectiven~s regulation"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability effectiven~s regulation"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability effectiven~s regulation law"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability effectiven~s regulation law"'
     - }
     - local vlist `"`vlist' `= abbrev("`v'",`varwidth')'"'
-    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf_
-> mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c pa
-> rliament~y presidential voice stability effectiven~s regulation law corruption"'
+    = local vlist `" ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp inf
+> _mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g competitiv~c 
+> parliament~y presidential voice stability effectiven~s regulation law corruption"'
     - }
     - DisplayInCols txt `indent' `skip' 0 `vlist'
-    = DisplayInCols txt 0 2 0  ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
-      ------------------------------------------------------ begin ds_util.DisplayInCols ---
+    = DisplayInCols txt 0 2 0  ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
+      ----------------------------------------------------- begin ds_util.DisplayInCols ---
       - gettoken sty 0 : 0
       - gettoken indent 0 : 0
       - gettoken pad 0 : 0
@@ -1932,7 +1955,7 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       - local wid = `wid' + `pad'
       = local wid = 12 + 2
       - local cols = int((`c(linesize)'+1-`indent')/`wid')
-      = local cols = int((92+1-0)/14)
+      = local cols = int((91+1-0)/14)
       - if `cols' < 2 {
       = if 6 < 2 {
         if `indent' {
@@ -1946,8 +1969,8 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       - local lines = `n'/`cols'
       = local lines = 28/6
       - local lines = int(cond(`lines'>int(`lines'), `lines'+1, `lines'))
-      = local lines = int(cond(4.666666666666667>int(4.666666666666667), 4.666666666666667+1
-> , 4.666666666666667))
+      = local lines = int(cond(4.666666666666667>int(4.666666666666667), 4.666666666666667+
+> 1, 4.666666666666667))
       - forvalues i=1(1)`lines' {
       = forvalues i=1(1)5 {
       - local top = min((`cols')*`lines'+`i', `n')
@@ -1957,54 +1980,58 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=1(5)28 {
       - local x : word `j' of `0'
-      = local x : word 1 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 1 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "ln_y" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 6 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 6 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "ext_bal" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 11 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 11 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "inf_mort" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 16 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 16 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "urban" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 21 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 21 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "parliament~y" _c
       - local col = `col' + `wid'
       = local col = 57 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 26 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 26 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(71) "regulation" _c
       - local col = `col' + `wid'
@@ -2020,54 +2047,58 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=2(5)28 {
       - local x : word `j' of `0'
-      = local x : word 2 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 2 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "growth" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 7 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 7 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "trade" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 12 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 12 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "lexp" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 17 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 17 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "yrsoffc" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 22 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 22 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "presidential" _c
       - local col = `col' + `wid'
       = local col = 57 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 27 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 27 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(71) "law" _c
       - local col = `col' + `wid'
@@ -2083,54 +2114,58 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=3(5)28 {
       - local x : word `j' of `0'
-      = local x : word 3 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 3 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "hc" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 8 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 8 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "inflation" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 13 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 13 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "tfr" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 18 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 18 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "military" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 23 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 23 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "voice" _c
       - local col = `col' + `wid'
       = local col = 57 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 28 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 28 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(71) "corruption" _c
       - local col = `col' + `wid'
@@ -2146,45 +2181,48 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=4(5)28 {
       - local x : word `j' of `0'
-      = local x : word 4 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 4 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "gvmnt_c" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 9 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 9 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "fem_emp" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 14 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 14 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "age_dep_old" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 19 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 19 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "competitiv~g" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 24 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 24 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "stability" _c
       - local col = `col' + `wid'
@@ -2200,45 +2238,49 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       - forvalues j=`i'(`lines')`top' {
       = forvalues j=5(5)28 {
       - local x : word `j' of `0'
-      = local x : word 5 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot
-> _emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compet
-> itiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 5 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
+> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g comp
+> etitiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(1) "gcf" _c
       - local col = `col' + `wid'
       = local col = 1 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 10 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 10 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(15) "tot_emp" _c
       - local col = `col' + `wid'
       = local col = 15 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 15 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 15 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(29) "age_dep_yo~g" _c
       - local col = `col' + `wid'
       = local col = 29 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 20 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 20 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(43) "competitiv~c" _c
       - local col = `col' + `wid'
       = local col = 43 + 14
       - }
       - local x : word `j' of `0'
-      = local x : word 25 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp to
-> t_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g compe
-> titiv~c parliament~y presidential voice stability effectiven~s regulation law corruption
+      = local x : word 25 of   ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp t
+> ot_emp inf_mort lexp tfr age_dep_old age_dep_yo~g urban yrsoffc military competitiv~g com
+> petitiv~c parliament~y presidential voice stability effectiven~s regulation law corruptio
+> n
       - di as `sty' _column(`col') "`x'" _c
       = di as txt _column(57) "effectiven~s" _c
       - local col = `col' + `wid'
@@ -2247,21 +2289,21 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
       - di as `sty'
       = di as txt
       - }
-      -------------------------------------------------------- end ds_util.DisplayInCols ---
+      ------------------------------------------------------- end ds_util.DisplayInCols ---
     - }
     - return local varlist `varlist'
-    = return local varlist ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_em
-> p inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg c
-> ompetitiveness_exec parliamentary presidential voice stability effectiveness regulation la
-> w corruption
-    ------------------------------------------------------------------------ end ds_util ---
+    = return local varlist ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_e
+> mp inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg
+>  competitiveness_exec parliamentary presidential voice stability effectiveness regulation
+>  law corruption
+    ----------------------------------------------------------------------- end ds_util ---
   - exit
-  ------------------------------------------------------------------------------- end ds ---
+  ------------------------------------------------------------------------------ end ds ---
 - foreach var of varlist `r(varlist)' {
-= foreach var of varlist ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp 
-> inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg com
-> petitiveness_exec parliamentary presidential voice stability effectiveness regulation law 
-> corruption {
+= foreach var of varlist ln_y growth hc gvmnt_c gcf ext_bal trade inflation fem_emp tot_emp
+>  inf_mort lexp tfr age_dep_old age_dep_young urban yrsoffc military competitiveness_leg c
+> ompetitiveness_exec parliamentary presidential voice stability effectiveness regulation l
+> aw corruption {
 - qui su `var'
 = qui su ln_y
 - gen `var'_norm = (`var' - r(mean) )/(r(sd))
@@ -2404,17 +2446,20 @@ file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/
 - }
 - drop ln_y_norm
 - save "${path}/Build/Output/`name'_cleaned.dta", replace
-= save "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build/Out
-> put/02_11_cleaned.dta", replace
-file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build/Output
-> /02_11_cleaned.dta saved
+= save "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build/Ou
+> tput/02_11_cleaned.dta", replace
+file /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Build/Outpu
+> t/02_11_cleaned.dta saved
 - }
 
 . 
+. * 
+. 
+. 
 . log close
       name:  <unnamed>
-       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log/
-> Task6.log
+       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log
+> /Task6.log
   log type:  text
- closed on:  29 Sep 2021, 20:04:04
---------------------------------------------------------------------------------------------
+ closed on:   5 Oct 2021, 17:01:11
+-------------------------------------------------------------------------------------------
