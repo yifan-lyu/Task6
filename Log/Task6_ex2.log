@@ -1,0 +1,136 @@
+--------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log/
+> Task6_ex2.log
+  log type:  text
+ opened on:   5 Oct 2021, 17:22:18
+
+. 
+. ******************* PREPARATION ************************************************
+. * keep 80% of observation
+. set seed 1234
+
+. 
+. 
+. * I choose Lasso to fit the old dataset parameter
+. lasso linear ln_y *norm, folds(10) rseed(1234)
+
+10-fold cross-validation with 100 lambdas ...
+Grid value 1:     lambda = .8336714   no. of nonzero coef. =       0
+Folds: 1...5....10   CVF = .9442795
+Grid value 2:     lambda = .7596103   no. of nonzero coef. =       2
+Folds: 1...5....10   CVF = .8384613
+Grid value 3:     lambda = .6921287   no. of nonzero coef. =       2
+Folds: 1...5....10   CVF = .7296546
+Grid value 4:     lambda = .6306419   no. of nonzero coef. =       3
+Folds: 1...5....10   CVF = .6387207
+Grid value 5:     lambda = .5746174   no. of nonzero coef. =       3
+Folds: 1...5....10   CVF = .5603196
+Grid value 6:     lambda = .5235699   no. of nonzero coef. =       3
+Folds: 1...5....10   CVF = .494243
+Grid value 7:     lambda = .4770574   no. of nonzero coef. =       4
+Folds: 1...5....10   CVF = .437322
+Grid value 8:     lambda =  .434677   no. of nonzero coef. =       4
+Folds: 1...5....10   CVF = .388949
+Grid value 9:     lambda = .3960615   no. of nonzero coef. =       4
+Folds: 1...5....10   CVF = .3477591
+Grid value 10:    lambda = .3608765   no. of nonzero coef. =       4
+Folds: 1...5....10   CVF = .3135291
+Grid value 11:    lambda = .3288172   no. of nonzero coef. =       6
+Folds: 1...5....10   CVF = .2851109
+Grid value 12:    lambda =  .299606   no. of nonzero coef. =       6
+Folds: 1...5....10   CVF = .2613012
+Grid value 13:    lambda = .2729898   no. of nonzero coef. =       6
+Folds: 1...5....10   CVF = .241555
+Grid value 14:    lambda = .2487381   no. of nonzero coef. =       6
+Folds: 1...5....10   CVF = .2250293
+Grid value 15:    lambda = .2266409   no. of nonzero coef. =       6
+Folds: 1...5....10   CVF = .2112273
+Grid value 16:    lambda = .2065068   no. of nonzero coef. =       6
+Folds: 1...5....10   CVF = .1995249
+Grid value 17:    lambda = .1881613   no. of nonzero coef. =       7
+Folds: 1...5....10   CVF = .1888747
+Grid value 18:    lambda = .1714456   no. of nonzero coef. =       7
+Folds: 1...5....10   CVF = .1797411
+Grid value 19:    lambda = .1562148   no. of nonzero coef. =       7
+Folds: 1...5....10   CVF = .1720335
+Grid value 20:    lambda = .1423371   no. of nonzero coef. =       7
+Folds: 1...5....10   CVF = .1648185
+Grid value 21:    lambda = .1296923   no. of nonzero coef. =       7
+Folds: 1...5....10   CVF = .1584405
+Grid value 22:    lambda = .1181708   no. of nonzero coef. =       7
+Folds: 1...5....10   CVF = .1532196
+Grid value 23:    lambda = .1076728   no. of nonzero coef. =       7
+Folds: 1...5....10   CVF = .1487244
+Grid value 24:    lambda = .0981074   no. of nonzero coef. =       8
+Folds: 1...5....10   CVF = .1434547
+Grid value 25:    lambda = .0893919   no. of nonzero coef. =       8
+Folds: 1...5....10   CVF = .1371424
+Grid value 26:    lambda = .0814505   no. of nonzero coef. =       9
+Folds: 1...5....10   CVF = .1316396
+Grid value 27:    lambda = .0742147   no. of nonzero coef. =      10
+Folds: 1...5....10   CVF = .1270173
+Grid value 28:    lambda = .0676217   no. of nonzero coef. =      10
+Folds: 1...5....10   CVF = .1233222
+Grid value 29:    lambda = .0616143   no. of nonzero coef. =      10
+Folds: 1...5....10   CVF = .1203488
+Grid value 30:    lambda = .0561407   no. of nonzero coef. =      10
+Folds: 1...5....10   CVF = .1178171
+Grid value 31:    lambda = .0511533   no. of nonzero coef. =      11
+Folds: 1...5....10   CVF = .1153053
+Grid value 32:    lambda =  .046609   no. of nonzero coef. =      11
+Folds: 1...5....10   CVF = .1133466
+Grid value 33:    lambda = .0424684   no. of nonzero coef. =      11
+Folds: 1...5....10   CVF = .2257331
+Grid value 34:    lambda = .0386956   no. of nonzero coef. =      11
+Folds: 1...5....10   CVF = .6950233
+Grid value 35:    lambda =  .035258   no. of nonzero coef. =      12
+Folds: 1...5....10   CVF = 1.439028
+... cross-validation complete ... minimum found
+
+Lasso linear model                          No. of obs        =        112
+                                            No. of covariates =         27
+Selection: Cross-validation                 No. of CV folds   =         10
+
+--------------------------------------------------------------------------
+         |                                No. of      Out-of-      CV mean
+         |                               nonzero       sample   prediction
+      ID |     Description      lambda     coef.    R-squared        error
+---------+----------------------------------------------------------------
+       1 |    first lambda    .8336714         0      -0.0044     .9442795
+      31 |   lambda before    .0511533        11       0.8774     .1153053
+    * 32 | selected lambda     .046609        11       0.8794     .1133466
+      33 |    lambda after    .0424684        11       0.7599     .2257331
+      35 |     last lambda     .035258        12      -0.5306     1.439028
+--------------------------------------------------------------------------
+* lambda selected by cross-validation.
+
+. estimates store lasso
+
+. 
+. 
+. * then load the new dataset
+. use "${path}/Build/Output/02_11_cleaned.dta", replace
+
+. 
+. lassogof lasso
+
+Penalized coefficients
+-------------------------------------------------
+       Name |         MSE    R-squared        Obs
+------------+------------------------------------
+      lasso |    .1212723       0.8831        112
+-------------------------------------------------
+
+. 
+. 
+. * No, the fit is worse, as we can see in the orginal data, the MSE from lasso is .076507
+. * However, the new data predicted by lassos has MSE of  .1212723
+. 
+. log close
+      name:  <unnamed>
+       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log/
+> Task6_ex2.log
+  log type:  text
+ closed on:   5 Oct 2021, 17:22:20
+--------------------------------------------------------------------------------------------

@@ -10,6 +10,8 @@ clear all
 set more off
 global path "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6"
 use "${path}/Build/Output/92_02_cleaned.dta", replace
+cap log close
+log using "${path}/Log/Task6_ex1.log", replace
 
 ******************* PREPARATION ************************************************
 * keep 80% of observation
@@ -58,7 +60,7 @@ predict yhat_select if insample == 2
 local df = `e(df_r)'
 findmse yhat_select ln_y `df'
 
-/*
+
 * principal component regression
 qui pca ln_y *norm
 local X "pc1 pc2 pc3 pc4 pc5 pc6"
@@ -98,5 +100,5 @@ local df = `e(df_r)'
 predict yhat_kitchen if insample == 2
 findmse yhat_kitchen ln_y `df'
 
-
+log close
 

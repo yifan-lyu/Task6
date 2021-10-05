@@ -9,6 +9,8 @@ clear all
 set more off
 global path "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6"
 use "${path}/Build/Output/02_11_cleaned.dta", replace
+cap log close
+log using "${path}/Log/Task6_ex3.log", replace
 
 
 * subset selection
@@ -55,4 +57,4 @@ regulation_norm
 We can see that variables selected are not the same
 */
 
-
+log close

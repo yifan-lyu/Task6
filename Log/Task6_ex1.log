@@ -1,0 +1,609 @@
+--------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log/
+> Task6_ex1.log
+  log type:  text
+ opened on:   5 Oct 2021, 17:21:38
+
+. 
+. ******************* PREPARATION ************************************************
+. * keep 80% of observation
+. set seed 1234
+
+. *count
+. *gen insample = 1 == (v1 < `r(N)'*0.8) // another way to do this
+. splitsample, generate(insample) split(0.8 0.2) 
+
+. label de svalues 1 "Training" 2 "Testing"
+
+. label val insample svalues
+
+. order insample, first
+
+. 
+. 
+. *mean squared error program
+. cap prog drop findmse
+
+. 
+. prog findmse
+  1. * This program calcualtes out of sample MSE, to determine the best model among all mode
+> ls
+. args yhat ln_y df
+  2. gen sqerr = (`yhat'-`ln_y')^2
+  3. egen mse = total(sqerr)
+  4. replace mse = mse/`df'
+  5. mean mse
+  6. drop sqerr mse
+  7. end
+
+. 
+. cap prog drop MSEfinder
+
+. matrix drop _all
+
+. 
+. prog MSEfinder
+  1. set seed 1234
+  2. * This program calculates within sample MSE, to determine the best model for PCA regres
+> sion
+. args ln_y X
+  3. qui crossfold: xi: regress `ln_y' `X', k(10)
+  4. matrix a = r(est)
+  5. * matrix list a
+. svmat double a, name(modela)
+  6. gen MSE = modela1^2
+  7. mean MSE
+  8. drop modela1 MSE
+  9. end
+
+. 
+. ********************************************************************************
+. * subset selection
+. vselect ln_y *_norm if insample == 1, forward r2adj // stata does not have cross validatio
+> n within sample
+FORWARD variable selection
+Information Criteria: R2ADJ
+
+------------------------------------------------------------------------------
+Stage 0 reg ln_y  : R2ADJ         0
+------------------------------------------------------------------------------
+R2ADJ -.0030952 :              add growth_norm
+R2ADJ -.63537   :              add    hc_norm
+R2ADJ -.0851626 :              add gvmnt_c_norm
+R2ADJ .0079196  :              add   gcf_norm
+R2ADJ -.1730914 :              add ext_bal_norm
+R2ADJ -.0478564 :              add trade_norm
+R2ADJ .0113495  :              add inflation_norm
+R2ADJ -.0135038 :              add fem_emp_norm
+R2ADJ -.0585502 :              add tot_emp_norm
+R2ADJ -.7041804 :              add inf_mort_norm
+R2ADJ -.6504134 :              add  lexp_norm
+R2ADJ -.6660359 :              add   tfr_norm
+R2ADJ -.4958174 :              add age_dep_old_norm
+R2ADJ -.7133706 :              add age_dep_young_norm
+R2ADJ -.5659029 :              add urban_norm
+R2ADJ -.0273878 :              add yrsoffc_norm
+R2ADJ -.2100281 :              add military_norm
+R2ADJ .0074173  :              add competitiveness_leg_norm
+R2ADJ .007038   :              add competitiveness_exec_norm
+R2ADJ -.2611159 :              add parliamentary_norm
+R2ADJ -.1432871 :              add presidential_norm
+R2ADJ -.507036  :              add voice_norm
+R2ADJ -.4505024 :              add stability_norm
+R2ADJ -.6693523 :              add effectiveness_norm
+R2ADJ -.6745822 :              add regulation_norm
+R2ADJ -.6066637 :              add   law_norm
+R2ADJ -.568259  :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 1 reg ln_y age_dep_young_norm : R2ADJ -.7133706
+------------------------------------------------------------------------------
+R2ADJ -.7110005 :              add growth_norm
+R2ADJ -.7680447 :              add    hc_norm
+R2ADJ -.741756  :              add gvmnt_c_norm
+R2ADJ -.7125937 :              add   gcf_norm
+R2ADJ -.7293771 :              add ext_bal_norm
+R2ADJ -.7291269 :              add trade_norm
+R2ADJ -.7154943 :              add inflation_norm
+R2ADJ -.7330593 :              add fem_emp_norm
+R2ADJ -.7311643 :              add tot_emp_norm
+R2ADJ -.7834363 :              add inf_mort_norm
+R2ADJ -.7650813 :              add  lexp_norm
+R2ADJ -.710816  :              add   tfr_norm
+R2ADJ -.7100767 :              add age_dep_old_norm
+R2ADJ -.7752553 :              add urban_norm
+R2ADJ -.7219227 :              add yrsoffc_norm
+R2ADJ -.7299295 :              add military_norm
+R2ADJ -.7116612 :              add competitiveness_leg_norm
+R2ADJ -.7116168 :              add competitiveness_exec_norm
+R2ADJ -.7138533 :              add parliamentary_norm
+R2ADJ -.7100848 :              add presidential_norm
+R2ADJ -.7186584 :              add voice_norm
+R2ADJ -.7334059 :              add stability_norm
+R2ADJ -.7777615 :              add effectiveness_norm
+R2ADJ -.7799137 :              add regulation_norm
+R2ADJ -.7491602 :              add   law_norm
+R2ADJ -.754929  :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 2 reg ln_y age_dep_young_norm inf_mort_norm : R2ADJ -.7834363
+------------------------------------------------------------------------------
+R2ADJ -.7896274 :              add growth_norm
+R2ADJ -.7972659 :              add    hc_norm
+R2ADJ -.8036253 :              add gvmnt_c_norm
+R2ADJ -.7886934 :              add   gcf_norm
+R2ADJ -.7963466 :              add ext_bal_norm
+R2ADJ -.7855808 :              add trade_norm
+R2ADJ -.7824182 :              add inflation_norm
+R2ADJ -.782594  :              add fem_emp_norm
+R2ADJ -.7844066 :              add tot_emp_norm
+R2ADJ -.7817846 :              add  lexp_norm
+R2ADJ -.8000906 :              add   tfr_norm
+R2ADJ -.7823907 :              add age_dep_old_norm
+R2ADJ -.8093256 :              add urban_norm
+R2ADJ -.7879028 :              add yrsoffc_norm
+R2ADJ -.7901876 :              add military_norm
+R2ADJ -.7851947 :              add competitiveness_leg_norm
+R2ADJ -.7851718 :              add competitiveness_exec_norm
+R2ADJ -.7883233 :              add parliamentary_norm
+R2ADJ -.7811744 :              add presidential_norm
+R2ADJ -.7864022 :              add voice_norm
+R2ADJ -.7888809 :              add stability_norm
+R2ADJ -.8177038 :              add effectiveness_norm
+R2ADJ -.8146926 :              add regulation_norm
+R2ADJ -.7982999 :              add   law_norm
+R2ADJ -.8100554 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 3 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm : R2ADJ -.8177038
+------------------------------------------------------------------------------
+R2ADJ -.8581797 :              add growth_norm
+R2ADJ -.8299036 :              add    hc_norm
+R2ADJ -.827986  :              add gvmnt_c_norm
+R2ADJ -.8187941 :              add   gcf_norm
+R2ADJ -.8332008 :              add ext_bal_norm
+R2ADJ -.8176994 :              add trade_norm
+R2ADJ -.819967  :              add inflation_norm
+R2ADJ -.8171388 :              add fem_emp_norm
+R2ADJ -.8176637 :              add tot_emp_norm
+R2ADJ -.8160421 :              add  lexp_norm
+R2ADJ -.8198832 :              add   tfr_norm
+R2ADJ -.8156223 :              add age_dep_old_norm
+R2ADJ -.8368126 :              add urban_norm
+R2ADJ -.8169452 :              add yrsoffc_norm
+R2ADJ -.8206178 :              add military_norm
+R2ADJ -.8239575 :              add competitiveness_leg_norm
+R2ADJ -.8239355 :              add competitiveness_exec_norm
+R2ADJ -.8155877 :              add parliamentary_norm
+R2ADJ -.8186206 :              add presidential_norm
+R2ADJ -.8202997 :              add voice_norm
+R2ADJ -.815901  :              add stability_norm
+R2ADJ -.8178989 :              add regulation_norm
+R2ADJ -.8183608 :              add   law_norm
+R2ADJ -.8155617 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 4 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm : R2ADJ -.8
+> 581797
+------------------------------------------------------------------------------
+R2ADJ -.8608655 :              add    hc_norm
+R2ADJ -.860372  :              add gvmnt_c_norm
+R2ADJ -.8610175 :              add   gcf_norm
+R2ADJ -.8718933 :              add ext_bal_norm
+R2ADJ -.8581501 :              add trade_norm
+R2ADJ -.8584469 :              add inflation_norm
+R2ADJ -.8648751 :              add fem_emp_norm
+R2ADJ -.8641181 :              add tot_emp_norm
+R2ADJ -.8574693 :              add  lexp_norm
+R2ADJ -.8605728 :              add   tfr_norm
+R2ADJ -.8565658 :              add age_dep_old_norm
+R2ADJ -.8739411 :              add urban_norm
+R2ADJ -.8568093 :              add yrsoffc_norm
+R2ADJ -.8566805 :              add military_norm
+R2ADJ -.85873   :              add competitiveness_leg_norm
+R2ADJ -.8587286 :              add competitiveness_exec_norm
+R2ADJ -.8571687 :              add parliamentary_norm
+R2ADJ -.856555  :              add presidential_norm
+R2ADJ -.8573639 :              add voice_norm
+R2ADJ -.856619  :              add stability_norm
+R2ADJ -.8606019 :              add regulation_norm
+R2ADJ -.8565008 :              add   law_norm
+R2ADJ -.8564914 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 5 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm 
+> : R2ADJ -.8739411
+------------------------------------------------------------------------------
+R2ADJ -.8755309 :              add    hc_norm
+R2ADJ -.8759318 :              add gvmnt_c_norm
+R2ADJ -.875354  :              add   gcf_norm
+R2ADJ -.882775  :              add ext_bal_norm
+R2ADJ -.8744146 :              add trade_norm
+R2ADJ -.8741918 :              add inflation_norm
+R2ADJ -.8765495 :              add fem_emp_norm
+R2ADJ -.8766898 :              add tot_emp_norm
+R2ADJ -.8725036 :              add  lexp_norm
+R2ADJ -.8729777 :              add   tfr_norm
+R2ADJ -.8727955 :              add age_dep_old_norm
+R2ADJ -.8724261 :              add yrsoffc_norm
+R2ADJ -.8724594 :              add military_norm
+R2ADJ -.8747546 :              add competitiveness_leg_norm
+R2ADJ -.8747313 :              add competitiveness_exec_norm
+R2ADJ -.8776948 :              add parliamentary_norm
+R2ADJ -.8751173 :              add presidential_norm
+R2ADJ -.8726307 :              add voice_norm
+R2ADJ -.8724374 :              add stability_norm
+R2ADJ -.8743822 :              add regulation_norm
+R2ADJ -.8729336 :              add   law_norm
+R2ADJ -.8730917 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 6 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm 
+> ext_bal_norm : R2ADJ  -.882775
+------------------------------------------------------------------------------
+R2ADJ -.8846557 :              add    hc_norm
+R2ADJ -.8890228 :              add gvmnt_c_norm
+R2ADJ -.8813744 :              add   gcf_norm
+R2ADJ -.8844979 :              add trade_norm
+R2ADJ -.8826361 :              add inflation_norm
+R2ADJ -.8868373 :              add fem_emp_norm
+R2ADJ -.8880823 :              add tot_emp_norm
+R2ADJ -.8816987 :              add  lexp_norm
+R2ADJ -.8817404 :              add   tfr_norm
+R2ADJ -.8813655 :              add age_dep_old_norm
+R2ADJ -.8814732 :              add yrsoffc_norm
+R2ADJ -.881363  :              add military_norm
+R2ADJ -.8833493 :              add competitiveness_leg_norm
+R2ADJ -.8833074 :              add competitiveness_exec_norm
+R2ADJ -.8843121 :              add parliamentary_norm
+R2ADJ -.882017  :              add presidential_norm
+R2ADJ -.8816333 :              add voice_norm
+R2ADJ -.8813822 :              add stability_norm
+R2ADJ -.8831214 :              add regulation_norm
+R2ADJ -.8830295 :              add   law_norm
+R2ADJ -.8816444 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 7 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm 
+> ext_bal_norm gvmnt_c_norm : R2ADJ -.8890228
+------------------------------------------------------------------------------
+R2ADJ -.8888733 :              add    hc_norm
+R2ADJ -.8876954 :              add   gcf_norm
+R2ADJ -.8907001 :              add trade_norm
+R2ADJ -.8902655 :              add inflation_norm
+R2ADJ -.892742  :              add fem_emp_norm
+R2ADJ -.8918643 :              add tot_emp_norm
+R2ADJ -.8886229 :              add  lexp_norm
+R2ADJ -.8876536 :              add   tfr_norm
+R2ADJ -.888523  :              add age_dep_old_norm
+R2ADJ -.8880134 :              add yrsoffc_norm
+R2ADJ -.8876613 :              add military_norm
+R2ADJ -.8882366 :              add competitiveness_leg_norm
+R2ADJ -.8882101 :              add competitiveness_exec_norm
+R2ADJ -.8899304 :              add parliamentary_norm
+R2ADJ -.8876576 :              add presidential_norm
+R2ADJ -.8881076 :              add voice_norm
+R2ADJ -.8876652 :              add stability_norm
+R2ADJ -.8903553 :              add regulation_norm
+R2ADJ -.8881919 :              add   law_norm
+R2ADJ -.8877266 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 8 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm 
+> ext_bal_norm gvmnt_c_norm fem_emp_norm : R2ADJ  -.892742
+------------------------------------------------------------------------------
+R2ADJ -.8936499 :              add    hc_norm
+R2ADJ -.8914038 :              add   gcf_norm
+R2ADJ -.8944734 :              add trade_norm
+R2ADJ -.894067  :              add inflation_norm
+R2ADJ -.8914015 :              add tot_emp_norm
+R2ADJ -.8914017 :              add  lexp_norm
+R2ADJ -.8914019 :              add   tfr_norm
+R2ADJ -.8920006 :              add age_dep_old_norm
+R2ADJ -.8918754 :              add yrsoffc_norm
+R2ADJ -.8914321 :              add military_norm
+R2ADJ -.8918963 :              add competitiveness_leg_norm
+R2ADJ -.8918709 :              add competitiveness_exec_norm
+R2ADJ -.8933835 :              add parliamentary_norm
+R2ADJ -.8914012 :              add presidential_norm
+R2ADJ -.8918854 :              add voice_norm
+R2ADJ -.8914384 :              add stability_norm
+R2ADJ -.8951792 :              add regulation_norm
+R2ADJ -.8921748 :              add   law_norm
+R2ADJ -.8914592 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 9 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm 
+> ext_bal_norm gvmnt_c_norm fem_emp_norm regulation_norm : R2ADJ -.8951792
+------------------------------------------------------------------------------
+R2ADJ -.8950024 :              add    hc_norm
+R2ADJ -.8938524 :              add   gcf_norm
+R2ADJ -.8958784 :              add trade_norm
+R2ADJ -.8973378 :              add inflation_norm
+R2ADJ -.8938551 :              add tot_emp_norm
+R2ADJ -.8938747 :              add  lexp_norm
+R2ADJ -.8938759 :              add   tfr_norm
+R2ADJ -.8942683 :              add age_dep_old_norm
+R2ADJ -.8939885 :              add yrsoffc_norm
+R2ADJ -.8940973 :              add military_norm
+R2ADJ -.8946538 :              add competitiveness_leg_norm
+R2ADJ -.8946254 :              add competitiveness_exec_norm
+R2ADJ -.8971781 :              add parliamentary_norm
+R2ADJ -.8940207 :              add presidential_norm
+R2ADJ -.8946261 :              add voice_norm
+R2ADJ -.8938719 :              add stability_norm
+R2ADJ -.8945255 :              add   law_norm
+R2ADJ -.8938524 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 10 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm
+>  ext_bal_norm gvmnt_c_norm fem_emp_norm regulation_norm inflation_norm : R2ADJ -.8973378
+------------------------------------------------------------------------------
+R2ADJ -.897986  :              add    hc_norm
+R2ADJ -.8964261 :              add   gcf_norm
+R2ADJ -.898995  :              add trade_norm
+R2ADJ -.8961044 :              add tot_emp_norm
+R2ADJ -.8960216 :              add  lexp_norm
+R2ADJ -.8960308 :              add   tfr_norm
+R2ADJ -.8962693 :              add age_dep_old_norm
+R2ADJ -.8962864 :              add yrsoffc_norm
+R2ADJ -.8961746 :              add military_norm
+R2ADJ -.8969204 :              add competitiveness_leg_norm
+R2ADJ -.8968863 :              add competitiveness_exec_norm
+R2ADJ -.8994073 :              add parliamentary_norm
+R2ADJ -.8961727 :              add presidential_norm
+R2ADJ -.8975012 :              add voice_norm
+R2ADJ -.8960595 :              add stability_norm
+R2ADJ -.8962241 :              add   law_norm
+R2ADJ -.8960292 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 11 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm
+>  ext_bal_norm gvmnt_c_norm fem_emp_norm regulation_norm inflation_norm parliamentary_norm 
+> : R2ADJ -.8994073
+------------------------------------------------------------------------------
+R2ADJ -.9007588 :              add    hc_norm
+R2ADJ -.8981825 :              add   gcf_norm
+R2ADJ -.9006696 :              add trade_norm
+R2ADJ -.8984909 :              add tot_emp_norm
+R2ADJ -.8982544 :              add  lexp_norm
+R2ADJ -.8981825 :              add   tfr_norm
+R2ADJ -.8985547 :              add age_dep_old_norm
+R2ADJ -.8981223 :              add yrsoffc_norm
+R2ADJ -.8985954 :              add military_norm
+R2ADJ -.8988983 :              add competitiveness_leg_norm
+R2ADJ -.8988709 :              add competitiveness_exec_norm
+R2ADJ -.8989243 :              add presidential_norm
+R2ADJ -.9005886 :              add voice_norm
+R2ADJ -.8981296 :              add stability_norm
+R2ADJ -.8981068 :              add   law_norm
+R2ADJ -.8981095 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 12 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm
+>  ext_bal_norm gvmnt_c_norm fem_emp_norm regulation_norm inflation_norm parliamentary_norm 
+> hc_norm : R2ADJ -.9007588
+------------------------------------------------------------------------------
+R2ADJ -.8996872 :              add   gcf_norm
+R2ADJ -.9026911 :              add trade_norm
+R2ADJ -.8995448 :              add tot_emp_norm
+R2ADJ -.899822  :              add  lexp_norm
+R2ADJ -.900182  :              add   tfr_norm
+R2ADJ -.8999645 :              add age_dep_old_norm
+R2ADJ -.8996346 :              add yrsoffc_norm
+R2ADJ -.9002554 :              add military_norm
+R2ADJ -.8995566 :              add competitiveness_leg_norm
+R2ADJ -.8995479 :              add competitiveness_exec_norm
+R2ADJ -.9001147 :              add presidential_norm
+R2ADJ -.9043357 :              add voice_norm
+R2ADJ -.8995931 :              add stability_norm
+R2ADJ -.8994543 :              add   law_norm
+R2ADJ -.8994675 :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 13 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm
+>  ext_bal_norm gvmnt_c_norm fem_emp_norm regulation_norm inflation_norm parliamentary_norm 
+> hc_norm voice_norm : R2ADJ -.9043357
+------------------------------------------------------------------------------
+R2ADJ -.9030758 :              add   gcf_norm
+R2ADJ -.9048743 :              add trade_norm
+R2ADJ -.9037492 :              add tot_emp_norm
+R2ADJ -.9034845 :              add  lexp_norm
+R2ADJ -.9035877 :              add   tfr_norm
+R2ADJ -.9031059 :              add age_dep_old_norm
+R2ADJ -.9030653 :              add yrsoffc_norm
+R2ADJ -.9034287 :              add military_norm
+R2ADJ -.9031299 :              add competitiveness_leg_norm
+R2ADJ -.9031384 :              add competitiveness_exec_norm
+R2ADJ -.9035451 :              add presidential_norm
+R2ADJ -.9047276 :              add stability_norm
+R2ADJ -.9031556 :              add   law_norm
+R2ADJ -.903106  :              add corruption_norm
+------------------------------------------------------------------------------
+Stage 14 reg ln_y age_dep_young_norm inf_mort_norm effectiveness_norm growth_norm urban_norm
+>  ext_bal_norm gvmnt_c_norm fem_emp_norm regulation_norm inflation_norm parliamentary_norm 
+> hc_norm voice_norm trade_norm : R2ADJ -.9048743
+------------------------------------------------------------------------------
+R2ADJ -.90367   :              add   gcf_norm
+R2ADJ -.9042096 :              add tot_emp_norm
+R2ADJ -.9039262 :              add  lexp_norm
+R2ADJ -.9043123 :              add   tfr_norm
+R2ADJ -.9036747 :              add age_dep_old_norm
+R2ADJ -.9035888 :              add yrsoffc_norm
+R2ADJ -.9039469 :              add military_norm
+R2ADJ -.9036091 :              add competitiveness_leg_norm
+R2ADJ -.9036138 :              add competitiveness_exec_norm
+R2ADJ -.9041851 :              add presidential_norm
+R2ADJ -.9043935 :              add stability_norm
+R2ADJ -.9036803 :              add   law_norm
+R2ADJ -.9035913 :              add corruption_norm
+
+Final Model
+
+      Source |       SS           df       MS      Number of obs   =        90
+-------------+----------------------------------   F(14, 75)       =     61.47
+       Model |  74.0033468        14  5.28595334   Prob > F        =    0.0000
+    Residual |  6.44925224        75   .08599003   R-squared       =    0.9198
+-------------+----------------------------------   Adj R-squared   =    0.9049
+       Total |  80.4525991        89  .903961787   Root MSE        =    .29324
+
+------------------------------------------------------------------------------------
+              ln_y |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+age_dep_young_norm |  -.2295123   .0801164    -2.86   0.005    -.3891124   -.0699123
+     inf_mort_norm |  -.1599095   .0767142    -2.08   0.041    -.3127321   -.0070869
+effectiveness_norm |   .2190075   .1124811     1.95   0.055    -.0050663    .4430813
+       growth_norm |  -.2544346   .0464914    -5.47   0.000    -.3470502    -.161819
+        urban_norm |   .1251084   .0536369     2.33   0.022     .0182582    .2319586
+      ext_bal_norm |   .1237634   .0388036     3.19   0.002     .0464626    .2010641
+      gvmnt_c_norm |   .0767674   .0353129     2.17   0.033     .0064206    .1471143
+      fem_emp_norm |  -.0969009   .0381264    -2.54   0.013    -.1728526   -.0209492
+   regulation_norm |   .1735852    .100218     1.73   0.087    -.0260593    .3732298
+    inflation_norm |  -.1190196   .0488209    -2.44   0.017    -.2162757   -.0217634
+parliamentary_norm |   .1021304    .049507     2.06   0.043     .0035073    .2007534
+           hc_norm |   .1420164   .0693307     2.05   0.044     .0039026    .2801303
+        voice_norm |  -.1288842   .0778015    -1.66   0.102    -.2838727    .0261043
+        trade_norm |   .0418847   .0350223     1.20   0.235    -.0278833    .1116527
+             _cons |  -.1036314   .0321718    -3.22   0.002     -.167721   -.0395419
+------------------------------------------------------------------------------------
+
+. predict yhat_select if insample == 2
+(option xb assumed; fitted values)
+(90 missing values generated)
+
+. local df = `e(df_r)'
+
+. findmse yhat_select ln_y `df'
+(90 missing values generated)
+(112 real changes made)
+
+Mean estimation                   Number of obs   =        112
+
+--------------------------------------------------------------
+             |       Mean   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+         mse |   .0374834          0             .           .
+--------------------------------------------------------------
+
+. 
+. 
+. * principal component regression
+. qui pca ln_y *norm
+
+. local X "pc1 pc2 pc3 pc4 pc5 pc6"
+
+. qui predict "`X'", score
+
+. MSEfinder ln_y "`X'" // use this method we find that adding up to pc6 gives min MSE in sam
+> ple
+(102 missing values generated)
+
+Mean estimation                   Number of obs   =         10
+
+--------------------------------------------------------------
+             |       Mean   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+         MSE |    .162939   .0537587      .0413283    .2845497
+--------------------------------------------------------------
+
+. 
+. qui reg ln_y if insample == 1
+
+. local df = `e(df_r)'
+
+. predict yhat_pcr if insample == 2 // then we find out of sample MSE
+(option xb assumed; fitted values)
+(90 missing values generated)
+
+. findmse yhat_pcr ln_y `df'
+(90 missing values generated)
+(112 real changes made)
+
+Mean estimation                   Number of obs   =        112
+
+--------------------------------------------------------------
+             |       Mean   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+         mse |   .2797339          0             .           .
+--------------------------------------------------------------
+
+. 
+. 
+. * lasso
+. qui lasso linear ln_y *norm if insample == 1, folds(10) rseed(1234)
+
+. estimates store lasso
+
+. 
+. * ridge
+. qui elasticnet linear ln_y *norm if insample == 1, folds(10) alphas(0) rseed(1234)
+
+. estimates store ridge
+
+. 
+. * elastic net
+. qui elasticnet linear ln_y *norm if insample == 1, folds(10) rseed(1234)
+
+. estimates store elastic
+
+. 
+. * print result for lasso and ridge
+. lassogof elastic ridge lasso, over(insample)
+
+Penalized coefficients
+-------------------------------------------------------------
+Name           insample |         MSE    R-squared        Obs
+------------------------+------------------------------------
+elastic                 |
+               Training |    .0883714       0.9011         90
+                Testing |     .082048       0.9267         22
+------------------------+------------------------------------
+ridge                   |
+               Training |    .1198562       0.8659         90
+                Testing |    .1276581       0.8860         22
+------------------------+------------------------------------
+lasso                   |
+               Training |    .0874323       0.9022         90
+                Testing |     .076507       0.9317         22
+-------------------------------------------------------------
+
+. 
+. * mean ols
+. qui reg ln_y if insample == 1
+
+. local df = `e(df_r)'
+
+. predict yhat_meanols if insample == 2
+(option xb assumed; fitted values)
+(90 missing values generated)
+
+. findmse yhat_meanols ln_y `df'
+(90 missing values generated)
+(112 real changes made)
+
+Mean estimation                   Number of obs   =        112
+
+--------------------------------------------------------------
+             |       Mean   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+         mse |   .2797339          0             .           .
+--------------------------------------------------------------
+
+. 
+. * kitchen sink ols
+. qui reg ln_y *norm if insample == 1
+
+. local df = `e(df_r)'
+
+. predict yhat_kitchen if insample == 2
+(option xb assumed; fitted values)
+(90 missing values generated)
+
+. findmse yhat_kitchen ln_y `df'
+(90 missing values generated)
+(112 real changes made)
+
+Mean estimation                   Number of obs   =        112
+
+--------------------------------------------------------------
+             |       Mean   Std. Err.     [95% Conf. Interval]
+-------------+------------------------------------------------
+         mse |   .0527008          0             .           .
+--------------------------------------------------------------
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6/Log/
+> Task6_ex1.log
+  log type:  text
+ closed on:   5 Oct 2021, 17:21:47
+--------------------------------------------------------------------------------------------

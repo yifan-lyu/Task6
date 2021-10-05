@@ -9,6 +9,8 @@ clear all
 set more off
 global path "/Users/frankdemacbookpro/Dropbox/SSE_yr2/Applied_Empirical/Yifan_Lyu/Task6"
 use "${path}/Build/Output/92_02_cleaned.dta", replace
+cap log close
+log using "${path}/Log/Task6_ex2.log", replace
 
 ******************* PREPARATION ************************************************
 * keep 80% of observation
@@ -29,6 +31,6 @@ lassogof lasso
 * No, the fit is worse, as we can see in the orginal data, the MSE from lasso is .076507
 * However, the new data predicted by lassos has MSE of  .1212723
 
-
+log close
 
 
